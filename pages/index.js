@@ -23,7 +23,6 @@ const defaultFlags = [
 ];
 export default function Home() {
   const [colors, setColors] = useState([]);
-  const [colorsModified, setColorsModified] = useState(false);
   useEffect(() => {
     setColors(defaultFlags.random().map((n) => n.toUpperCase()));
     if (location.hash) {
@@ -32,10 +31,6 @@ export default function Home() {
       } catch (e) {}
     }
   }, []);
-  useEffect(
-    () => colorsModified && (location.hash = btoa(JSON.stringify(colors))),
-    [colors]
-  );
   return (
     <div className={styles.container}>
       <Head>
@@ -57,12 +52,12 @@ export default function Home() {
                 colors={colors}
                 key={i}
                 removeColor={() => {
-                  setColors(arrayWithoutElementAtIndex(colors, i));
-                  setColorsModified(true);
+                  const nc = arrayWithoutElementAtIndex(colors, i);
+                  setColors(nc);
+                  location.hash = btoa(JSON.stringify(nc));
                 }}
                 updateColor={(color) => {
                   setColors(Object.assign([], colors, { [i]: color }));
-                  setColorsModified(true);
                 }}
               />
             ))}
@@ -70,8 +65,9 @@ export default function Home() {
           <button
             className={styles.addButton}
             onClick={() => {
-              setColors([...colors, defaultFlags.random().random()]);
-              setColorsModified(true);
+              const nc = [...colors, defaultFlags.random().random()];
+              setColors(nc);
+              location.hash = btoa(JSON.stringify(nc));
             }}
           >
             Add
@@ -177,6 +173,9 @@ function FlagColorBox({ color, removeColor, updateColor, colors }) {
             color={color}
             onChange={({ hex }) => {
               if (pickerOpen) updateColor(hex.replace('#', '').toUpperCase());
+            }}
+            onChangeComplete={() => {
+              location.hash = btoa(JSON.stringify(colors));
             }}
             className={styles.colorPicker}
             presetColors={Array.from(

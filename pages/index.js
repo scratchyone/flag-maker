@@ -97,12 +97,11 @@ export default function Home() {
 }
 function downloadSVG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
-  var svgBlob = new Blob([xml], { type: 'image/svg;charset=utf-8' });
   fileDownload(xml, 'flag.svg');
 }
 async function downloadPNG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
-  const canvas = document.createElement('canvas'); //new OffscreenCanvas(1920, 1152);
+  const canvas = document.createElement('canvas');
   canvas.width = 1920;
   canvas.height = 1152;
   const ctx = canvas.getContext('2d');

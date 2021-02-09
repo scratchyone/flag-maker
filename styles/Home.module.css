@@ -125,3 +125,20 @@
   padding-right: 15px;
   cursor: pointer;
 }
+.directionButton {
+  max-width: 90vw;
+  width: 100%;
+  border: none;
+  background: #6b79f9;
+  border-radius: 15px;
+  font-family: Open Sans;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #ffffff;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}

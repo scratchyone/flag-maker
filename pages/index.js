@@ -22,14 +22,26 @@ const defaultFlags = [
   ['D62900', 'FF9B55', 'FFFFFF', 'D461A6', 'A50062'],
   ['078d70', '27ceaa', '98e8c1', 'ffffff', '7bade2', '5049cc', '3d1a78'],
 ];
+const directions = { vertical: -1, horizontal: 1 };
 export default function Home() {
   const [colors, setColors] = useState([]);
+  const [direction, setDirection] = useState(directions.horizontal);
   useEffect(() => {
     setColors(defaultFlags.random().map((n) => n.toUpperCase()));
+    setDirection(directions.horizontal);
     if (location.hash) {
       try {
-        setColors(JSON.parse(atob(location.hash.substr(1))));
-      } catch (e) {}
+        let json = JSON.parse(atob(location.hash.substr(1)));
+        if (json.length > 0 && Object.values(directions).includes(json[0])) {
+          setDirection(json[0]);
+          setColors(arrayWithoutElementAtIndex(json, 0));
+        } else {
+          setDirection(directions.horizontal);
+          setColors(json);
+        }
+      } catch (e) {
+        console.error(e);
+      }
     }
   }, []);
   return (
@@ -66,7 +78,7 @@ export default function Home() {
           <button
             className={styles.addButton}
             onClick={() => {
-              const nc = [...colors, defaultFlags.random().random()];
+              const nc = [direction, ...colors, defaultFlags.random().random()];
               setColors(nc);
               location.hash = btoa(JSON.stringify(nc));
             }}
@@ -75,21 +87,32 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.rightColumn}>
-          <div className={styles.flag}>{generateFlag(colors, 6)}</div>
+          <div className={styles.flag}>
+            {generateFlag(colors, direction, 6)}
+          </div>
           <div className={styles.exportButtons}>
             <button
               className={styles.exportButton}
-              onClick={() => downloadPNG(generateFlag(colors))}
+              onClick={() => downloadPNG(generateFlag(colors, direction))}
             >
               Download as PNG
             </button>
             <button
               className={styles.exportButton}
-              onClick={() => downloadSVG(generateFlag(colors))}
+              onClick={() => downloadSVG(generateFlag(colors, direction))}
             >
               Download as SVG
             </button>
           </div>
+          <button
+            className={styles.directionButton}
+            onClick={() => {
+              location.hash = btoa(JSON.stringify([direction * -1, ...colors]));
+              setDirection(direction * -1);
+            }}
+          >
+            Change Stripe Direction
+          </button>
         </div>
       </div>
     </div>
@@ -111,10 +134,12 @@ async function downloadPNG(svg) {
   fileDownload(blob, 'flag.png');
 }
 
-function generateFlag(colors, borderRadius) {
+function generateFlag(colors, direction, borderRadius) {
   const width = 500;
   const height = 300;
-  const stripeHeight = height / colors.length;
+  const yOffset =
+    direction == directions.horizontal ? height / colors.length : 0;
+  const xOffset = direction == directions.vertical ? width / colors.length : 0;
   let lastColor = null;
   return (
     <svg
@@ -125,10 +150,18 @@ function generateFlag(colors, borderRadius) {
       {colors.map((color, i) => {
         const rect = color != lastColor && (
           <rect
-            x={0}
-            y={i * stripeHeight}
-            width="100%"
-            height={`${100 - (100 / colors.length) * i}%`}
+            x={i * xOffset}
+            y={i * yOffset}
+            width={
+              direction == directions.vertical
+                ? `${100 - (100 / colors.length) * i}%`
+                : '100%'
+            }
+            height={
+              direction == directions.horizontal
+                ? `${100 - (100 / colors.length) * i}%`
+                : '100%'
+            }
             fill={'#' + color}
             key={i}
           />

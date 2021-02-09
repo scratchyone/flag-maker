@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { SketchPicker } from 'react-color';
 import ReactDOMServer from 'react-dom/server';
 import Canvg, { presets } from 'canvg';
+import classnames from 'classnames';
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
   ['55CDFC', 'F7A8B8', 'FFFFFF', 'F7A8B8', '55CDFC'],
@@ -148,7 +149,10 @@ function FlagColorBox({ color, removeColor, updateColor, colors }) {
   return (
     <div className={styles.flagColorBox}>
       <div
-        className={styles.colorSwatch}
+        className={classnames(
+          styles.colorSwatch,
+          color.toUpperCase() == 'FFFFFF' && styles.whiteColorSwatch
+        )}
         style={{ backgroundColor: '#' + color }}
         onClick={() => setPickerOpen(true)}
       />

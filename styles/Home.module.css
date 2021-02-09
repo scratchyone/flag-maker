@@ -43,6 +43,9 @@
   border-radius: 100%;
   cursor: pointer;
 }
+.whiteColorSwatch {
+  border: 1px solid #bebebe;
+}
 .colorHexCode {
   font-family: Open Sans;
   font-style: normal;

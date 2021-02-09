@@ -9,6 +9,7 @@ import classnames from 'classnames';
 import fileDownload from 'js-file-download';
 import canvasToBlob from 'async-canvas-to-blob';
 import scrollToComponent from 'react-scroll-to-component';
+import React from 'react';
 
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
@@ -111,13 +112,17 @@ async function downloadPNG(svg) {
   fileDownload(blob, 'flag.png');
 }
 
-function generateFlag(colors) {
+function generateFlag(colors, borderRadius) {
   const width = 500;
   const height = 300;
   const stripeHeight = height / colors.length;
   let lastColor = null;
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      style={{ borderRadius: borderRadius }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
       {colors.map((color, i) => {
         const rect = color != lastColor && (
           <rect

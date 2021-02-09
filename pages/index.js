@@ -6,6 +6,9 @@ import { SketchPicker } from 'react-color';
 import ReactDOMServer from 'react-dom/server';
 import Canvg, { presets } from 'canvg';
 import classnames from 'classnames';
+import fileDownload from 'js-file-download';
+import canvasToBlob from 'async-canvas-to-blob';
+
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
   ['55CDFC', 'F7A8B8', 'FFFFFF', 'F7A8B8', '55CDFC'],
@@ -97,27 +100,18 @@ export default function Home() {
 function downloadSVG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
   var svgBlob = new Blob([xml], { type: 'image/svg;charset=utf-8' });
-  var svgUrl = URL.createObjectURL(svgBlob);
-  var downloadLink = document.createElement('a');
-  downloadLink.href = svgUrl;
-  downloadLink.download = 'flag.svg';
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
+  fileDownload(xml, 'flag.svg');
 }
 async function downloadPNG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
-  const canvas = new OffscreenCanvas(1920, 1152);
+  const canvas = document.createElement('canvas'); //new OffscreenCanvas(1920, 1152);
+  canvas.width = 1920;
+  canvas.height = 1152;
   const ctx = canvas.getContext('2d');
   let v = await Canvg.from(ctx, xml, presets.offscreen());
   await v.render();
-  var downloadLink = document.createElement('a');
-  const blob = await canvas.convertToBlob();
-  downloadLink.href = URL.createObjectURL(blob);
-  downloadLink.download = 'flag.png';
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
+  const blob = await canvasToBlob(canvas);
+  fileDownload(blob, 'flag.png');
 }
 
 function generateFlag(colors) {

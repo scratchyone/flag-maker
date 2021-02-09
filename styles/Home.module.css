@@ -97,6 +97,7 @@
 .flag > svg {
   border-radius: 6px;
   max-width: 90vw;
+  filter: drop-shadow(2px 2px 29px rgba(0, 0, 0, 0.1));
 }
 .exportButtons {
   display: flex;

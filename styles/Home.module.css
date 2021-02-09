@@ -102,13 +102,16 @@
   filter: drop-shadow(2px 2px 29px rgba(0, 0, 0, 0.1));
 }
 .exportButtons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 15px;
+  display: grid;
+  grid-gap: 15px;
   max-width: 90vw;
-  flex-wrap: wrap;
   margin-bottom: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 475px) {
+  .exportButtons {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 .exportButton {
   flex-grow: 1;

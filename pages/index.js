@@ -35,6 +35,11 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Flag Maker</title>
+        <meta property="og:title" content="Flag Maker" />
+        <meta
+          property="og:description"
+          content="Create striped flags easily with Flag Maker"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>

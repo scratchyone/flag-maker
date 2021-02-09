@@ -1,122 +1,121 @@
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
+.header {
+  text-align: center;
+  font-family: Open Sans;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 87px;
+  color: #a74848;
+  padding-bottom: 20px;
+}
+.holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.leftColumn {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 16px;
 }
-
-.main {
-  padding: 5rem 0;
-  flex: 1;
+.colorBoxes {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 16px;
+  overflow: auto;
 }
-
-.footer {
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
+.flagColorBox {
+  background: #fdfdfd;
+  border: 2px solid #eeeeee;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 15px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
-
-.footer img {
-  margin-left: 0.5rem;
+.colorSwatch {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  cursor: pointer;
 }
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
+.colorHexCode {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 38px;
+  color: #333333;
+  min-width: 8ex;
   text-align: center;
 }
-
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
+.removeColor {
+  font-size: 28px;
+  line-height: 32px;
+  color: #cb3d3d;
+  cursor: pointer;
 }
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.colorPicker {
+  position: absolute;
+  transform: translateY(60%);
+  z-index: 99;
 }
-
-.grid {
+.outsideClickCatcher {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.addButton {
+  border: none;
+  background: #6b79f9;
+  border-radius: 12px;
+  font-family: Open Sans;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 48px;
+  text-align: center;
+  color: #ffffff;
+  outline: none;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.flag {
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+.flag > svg {
+  border-radius: 6px;
+  max-width: 90vw;
+}
+.exportButtons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+  max-width: 90vw;
   flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+  margin-bottom: 20px;
 }
-
-.card {
-  margin: 1rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+.exportButton {
+  flex-grow: 1;
+  border: none;
+  background: #6b79f9;
+  border-radius: 15px;
+  font-family: Open Sans;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #ffffff;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
 }

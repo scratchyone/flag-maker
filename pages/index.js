@@ -141,7 +141,10 @@ function generateFlag(colors) {
 function FlagColorBox({ color, removeColor, updateColor, colors }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   return (
-    <div className={styles.flagColorBox}>
+    <div
+      className={styles.flagColorBox}
+      style={pickerOpen ? { touchAction: 'none' } : {}}
+    >
       <div className={styles.flagColorBoxFlex}>
         <div
           className={classnames(

@@ -148,53 +148,58 @@ function FlagColorBox({ color, removeColor, updateColor, colors }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   return (
     <div className={styles.flagColorBox}>
-      <div
-        className={classnames(
-          styles.colorSwatch,
-          color.toUpperCase() == 'FFFFFF' && styles.whiteColorSwatch
-        )}
-        style={{ backgroundColor: '#' + color }}
-        onClick={() => setPickerOpen(true)}
-      />
-      {pickerOpen && (
+      <div className={styles.flagColorBoxFlex}>
         <div
-          className={styles.outsideClickCatcher}
-          onClick={() => setPickerOpen(false)}
-        />
-      )}
-      {pickerOpen && (
-        <SketchPicker
-          color={color}
-          onChange={({ hex }) =>
-            pickerOpen && updateColor(hex.replace('#', '').toUpperCase())
-          }
-          className={styles.colorPicker}
-          presetColors={Array.from(
-            new Set([
-              ...colors.map((c) => `#${c}`),
-              '#D0021B',
-              '#F5A623',
-              '#F8E71C',
-              '#8B572A',
-              '#7ED321',
-              '#417505',
-              '#BD10E0',
-              '#9013FE',
-              '#4A90E2',
-              '#50E3C2',
-              '#B8E986',
-              '#000000',
-              '#4A4A4A',
-              '#9B9B9B',
-              '#FFFFFF',
-            ])
+          className={classnames(
+            styles.colorSwatch,
+            color.toUpperCase() == 'FFFFFF' && styles.whiteColorSwatch
           )}
+          style={{ backgroundColor: '#' + color }}
+          onClick={() => setPickerOpen(true)}
         />
-      )}
-      <div className={styles.colorHexCode} onClick={() => setPickerOpen(true)}>
-        #{color}
+        {pickerOpen && (
+          <div
+            className={styles.outsideClickCatcher}
+            onClick={() => setPickerOpen(false)}
+          />
+        )}
+        {pickerOpen && (
+          <SketchPicker
+            color={color}
+            onChange={({ hex }) =>
+              pickerOpen && updateColor(hex.replace('#', '').toUpperCase())
+            }
+            className={styles.colorPicker}
+            presetColors={Array.from(
+              new Set([
+                ...colors.map((c) => `#${c}`),
+                '#D0021B',
+                '#F5A623',
+                '#F8E71C',
+                '#8B572A',
+                '#7ED321',
+                '#417505',
+                '#BD10E0',
+                '#9013FE',
+                '#4A90E2',
+                '#50E3C2',
+                '#B8E986',
+                '#000000',
+                '#4A4A4A',
+                '#9B9B9B',
+                '#FFFFFF',
+              ])
+            )}
+          />
+        )}
+        <div
+          className={styles.colorHexCode}
+          onClick={() => setPickerOpen(true)}
+        >
+          #{color}
+        </div>
+        <FaTimes className={styles.removeColor} onClick={removeColor} />
       </div>
-      <FaTimes className={styles.removeColor} onClick={removeColor} />
     </div>
   );
 }

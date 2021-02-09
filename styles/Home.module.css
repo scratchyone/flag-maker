@@ -31,6 +31,8 @@
   box-sizing: border-box;
   border-radius: 12px;
   padding: 15px;
+}
+.flagColorBoxFlex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

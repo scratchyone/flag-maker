@@ -16,9 +16,7 @@
     "react": "17.0.1",
     "react-color": "^2.19.3",
     "react-dom": "17.0.1",
-    "react-icons": "^4.2.0"
-  },
-  "devDependencies": {
+    "react-icons": "^4.2.0",
     "flex-gap-polyfill": "^2.2.1",
     "postcss": "^8.1.7"
   }

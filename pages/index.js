@@ -20,7 +20,7 @@ export default function Home() {
   const [colors, setColors] = useState([]);
   const [colorsModified, setColorsModified] = useState(false);
   useEffect(() => {
-    setColors(defaultFlags.random());
+    setColors(defaultFlags.random().map((n) => n.toUpperCase()));
     if (location.hash) {
       try {
         setColors(JSON.parse(atob(location.hash.substr(1))));

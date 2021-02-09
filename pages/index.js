@@ -1,13 +1,14 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { FaTimes } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SketchPicker } from 'react-color';
 import ReactDOMServer from 'react-dom/server';
 import Canvg, { presets } from 'canvg';
 import classnames from 'classnames';
 import fileDownload from 'js-file-download';
 import canvasToBlob from 'async-canvas-to-blob';
+import scrollToComponent from 'react-scroll-to-component';
 
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
@@ -140,6 +141,14 @@ function generateFlag(colors) {
 }
 function FlagColorBox({ color, removeColor, updateColor, colors }) {
   const [pickerOpen, setPickerOpen] = useState(false);
+  const myRef = useRef(null);
+  const executeScroll = () => scrollToComponent(myRef.current);
+
+  useEffect(() => {
+    if (pickerOpen && myRef.current) {
+      executeScroll();
+    }
+  }, [pickerOpen, myRef]);
   return (
     <div
       className={styles.flagColorBox}
@@ -152,7 +161,9 @@ function FlagColorBox({ color, removeColor, updateColor, colors }) {
             color.toUpperCase() == 'FFFFFF' && styles.whiteColorSwatch
           )}
           style={{ backgroundColor: '#' + color }}
-          onClick={() => setPickerOpen(true)}
+          onClick={() => {
+            setPickerOpen(true);
+          }}
         />
         {pickerOpen && (
           <div
@@ -162,10 +173,11 @@ function FlagColorBox({ color, removeColor, updateColor, colors }) {
         )}
         {pickerOpen && (
           <SketchPicker
+            ref={myRef}
             color={color}
-            onChange={({ hex }) =>
-              pickerOpen && updateColor(hex.replace('#', '').toUpperCase())
-            }
+            onChange={({ hex }) => {
+              if (pickerOpen) updateColor(hex.replace('#', '').toUpperCase());
+            }}
             className={styles.colorPicker}
             presetColors={Array.from(
               new Set([

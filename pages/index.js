@@ -78,9 +78,9 @@ export default function Home() {
           <button
             className={styles.addButton}
             onClick={() => {
-              const nc = [direction, ...colors, defaultFlags.random().random()];
+              const nc = [...colors, defaultFlags.random().random()];
               setColors(nc);
-              location.hash = btoa(JSON.stringify(nc));
+              location.hash = btoa(JSON.stringify([direction, ...nc]));
             }}
           >
             Add

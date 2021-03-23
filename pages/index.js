@@ -53,6 +53,10 @@ export default function Home() {
           property="og:description"
           content="Create striped flags easily with Flag Maker"
         />
+        <meta
+          property="description"
+          content="Create striped flags easily with Flag Maker"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>

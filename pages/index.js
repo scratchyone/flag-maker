@@ -58,6 +58,11 @@ export default function Home() {
           content="Create striped flags easily with Flag Maker"
         />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          defer
+          data-domain="flag.rachel.systems"
+          src="/js/script.js"
+        ></script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>
       <div className={styles.holder}>

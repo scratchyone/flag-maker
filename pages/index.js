@@ -14,7 +14,7 @@ import React from 'react';
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
   ['55CDFC', 'F7A8B8', 'FFFFFF', 'F7A8B8', '55CDFC'],
-  ['FFF430', 'FFFFFF', '9C59D1', '000000'],
+  ['FFF430', 'FFFFFF', '9C59D1', '2D2D2D'],
   ['FF1B8D', 'FFDA00', '1BB3FF'],
   ['000000', 'A4A4A4', 'FFFFFF', '810081'],
   ['3AA63F', 'A8D47A', 'FFFFFF', 'AAAAAA', '000000'],

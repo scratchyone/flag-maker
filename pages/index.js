@@ -6,10 +6,10 @@ import { SketchPicker } from 'react-color';
 import ReactDOMServer from 'react-dom/server';
 import Canvg, { presets } from 'canvg';
 import classnames from 'classnames';
-import fileDownload from 'js-file-download';
 import canvasToBlob from 'async-canvas-to-blob';
 import scrollToComponent from 'react-scroll-to-component';
 import React from 'react';
+import { saveAs } from 'file-saver';
 
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
@@ -132,7 +132,8 @@ export default function Home() {
 }
 function downloadSVG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
-  fileDownload(xml, 'flag.svg');
+  var blob = new Blob([xml], { type: 'image/svg+xml' });
+  saveAs(blob, 'flag.svg');
 }
 async function downloadPNG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
@@ -143,7 +144,7 @@ async function downloadPNG(svg) {
   let v = await Canvg.from(ctx, xml, presets.offscreen());
   await v.render();
   const blob = await canvasToBlob(canvas);
-  fileDownload(blob, 'flag.png');
+  saveAs(blob, 'flag.png');
 }
 
 function generateFlag(colors, direction, borderRadius) {

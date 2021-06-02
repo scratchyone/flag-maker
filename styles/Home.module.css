@@ -91,6 +91,7 @@
   padding: 5px;
   cursor: pointer;
   margin-bottom: 20px;
+  min-width: 200px;
 }
 .flag {
   margin-bottom: 15px;

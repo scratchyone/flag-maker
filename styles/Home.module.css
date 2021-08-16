@@ -1,6 +1,6 @@
 .header {
   text-align: center;
-  font-family: Open Sans;
+
   font-weight: bold;
   font-size: 64px;
   line-height: 87px;
@@ -50,7 +50,6 @@
   border: 1px solid #bebebe;
 }
 .colorHexCode {
-  font-family: Open Sans;
   font-style: normal;
   font-weight: 600;
   font-size: 28px;
@@ -81,7 +80,7 @@
   border: none;
   background: #6b79f9;
   border-radius: 12px;
-  font-family: Open Sans;
+
   font-weight: bold;
   font-size: 35px;
   line-height: 48px;
@@ -119,7 +118,7 @@
   border: none;
   background: #6b79f9;
   border-radius: 15px;
-  font-family: Open Sans;
+
   font-weight: bold;
   font-size: 32px;
   line-height: 44px;
@@ -135,7 +134,7 @@
   border: none;
   background: #6b79f9;
   border-radius: 15px;
-  font-family: Open Sans;
+
   font-weight: bold;
   font-size: 32px;
   line-height: 44px;

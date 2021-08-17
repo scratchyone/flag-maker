@@ -29,7 +29,7 @@
   background: #fdfdfd;
   border: 2px solid #eeeeee;
   box-sizing: border-box;
-  border-radius: 9px;
+  border-radius: 12px;
   padding: 15px;
 }
 .flagColorBoxFlex {
@@ -76,20 +76,19 @@
   top: 0;
   left: 0;
 }
-.button {
-  font-weight: bold;
-  font-size: 32px;
-  background: #6865f2;
-  border-radius: 12px;
-  border: none;
-  color: #ffffff;
-  padding: 10px;
-  cursor: pointer;
-  outline: none;
-  text-align: center;
-  font-family: Open Sans, sans-serif;
-}
 .addButton {
+  border: none;
+  background: #6b79f9;
+  border-radius: 12px;
+
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 48px;
+  text-align: center;
+  color: #ffffff;
+  outline: none;
+  padding: 5px;
+  cursor: pointer;
   margin-bottom: 20px;
   min-width: 200px;
 }
@@ -117,13 +116,32 @@
 .exportButton {
   flex-grow: 1;
   border: none;
+  background: #6b79f9;
+  border-radius: 15px;
+
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #ffffff;
+  padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  cursor: pointer;
 }
 .directionButton {
   max-width: 90vw;
   width: 100%;
+  border: none;
+  background: #6b79f9;
+  border-radius: 15px;
+
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #ffffff;
+  padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  cursor: pointer;
   margin-bottom: 10px;
 }

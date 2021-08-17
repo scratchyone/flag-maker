@@ -85,7 +85,7 @@ export default function Home() {
             ))}
           </div>
           <button
-            className={classnames(styles.addButton, styles.button)}
+            className={styles.addButton}
             onClick={() => {
               const nc = [
                 ...colors,
@@ -104,20 +104,20 @@ export default function Home() {
           </div>
           <div className={styles.exportButtons}>
             <button
-              className={classnames(styles.exportButton, styles.button)}
+              className={styles.exportButton}
               onClick={() => downloadPNG(generateFlag(colors, direction))}
             >
               Download as PNG
             </button>
             <button
-              className={classnames(styles.exportButton, styles.button)}
+              className={styles.exportButton}
               onClick={() => downloadSVG(generateFlag(colors, direction))}
             >
               Download as SVG
             </button>
           </div>
           <button
-            className={classnames(styles.directionButton, styles.button)}
+            className={styles.directionButton}
             onClick={() => {
               location.hash = btoa(JSON.stringify([direction * -1, ...colors]));
               setDirection(direction * -1);

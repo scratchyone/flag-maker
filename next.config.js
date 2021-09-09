@@ -1,4 +1,17 @@
 module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/api/flag.svg',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'image/svg+xml',
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

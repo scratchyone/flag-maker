@@ -1,15 +1,10 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 
 export default function handler(req, res) {
-  if (!req.query.colors)
-    res
-      .status(400)
-      .setHeader('Content-Type', 'image/svg+xml')
-      .send(errorPageMissingParam());
+  if (!req.query.colors) res.status(400).send(errorPageMissingParam());
   res
     .status(200)
     // Set content type
-    .setHeader('Content-Type', 'image/svg+xml')
     .send(
       renderToStaticMarkup(
         generateFlag(
@@ -21,7 +16,7 @@ export default function handler(req, res) {
     );
 }
 const directions = { vertical: -1, horizontal: 1 };
-function errorPageMissingParam(param, message) {
+function errorPageMissingParam() {
   const [width, height] = [1000, 405];
   return renderToStaticMarkup(
     <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">

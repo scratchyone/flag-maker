@@ -54,14 +54,14 @@
   font-weight: 600;
   font-size: 28px;
   line-height: 38px;
-  color: #333333;
+  color: var(--text-color);
   min-width: 9ex;
   text-align: center;
 }
 .removeColor {
   font-size: 28px;
   line-height: 32px;
-  color: #cb3d3d;
+  color: var(--alert-color);
   cursor: pointer;
 }
 .colorPicker {
@@ -85,7 +85,7 @@
   font-size: var(--button-font-size);
   line-height: 48px;
   text-align: center;
-  color: var(--text-color);
+  color: var(--text-color-dark);
   outline: none;
   padding: 5px;
   cursor: pointer;
@@ -122,7 +122,7 @@
   font-weight: bold;
   font-size: var(--button-font-size);
   line-height: 44px;
-  color: var(--text-color);
+  color: var(--text-color-dark);
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -138,7 +138,7 @@
   font-weight: bold;
   font-size: var(--button-font-size);
   line-height: 44px;
-  color: var(--text-color);
+  color: var(--text-color-dark);
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;

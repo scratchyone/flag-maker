@@ -4,11 +4,28 @@
   --button-color: #6865f2;
   --button-border-radius: 12px;
   --button-font-size: 32px;
-  --text-color: #ffffff;
+  --text-color-dark: #ffffff;
+  --text-color: #333333;
   --header-color: #a74848;
+  --alert-color: #cb3d3d;
   --flag-color-border: #eeeeee;
   --white-color-border: #bebebe;
   --flag-color-box-background: #fdfdfd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1f1f2a;
+    --button-color: #4947aa;
+    --button-border-radius: 12px;
+    --button-font-size: 32px;
+    --text-color-dark: #ffffff;
+    --text-color: #ffffff;
+    --header-color: #f36363;
+    --alert-color: #cb3d3d;
+    --flag-color-border: #2b2b38;
+    --white-color-border: #ffffff00;
+    --flag-color-box-background: #252532;
+  }
 }
 html,
 body {

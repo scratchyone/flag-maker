@@ -26,7 +26,13 @@ const defaultFlags = [
 ];
 const directions = { vertical: -1, horizontal: 1 };
 export default function Home() {
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState([
+    'FFFFFF',
+    'FFFFFF',
+    'FFFFFF',
+    'FFFFFF',
+    'FFFFFF',
+  ]);
   const [direction, setDirection] = useState(directions.horizontal);
   useEffect(() => {
     setColors(defaultFlags.random().map((n) => n.toUpperCase()));

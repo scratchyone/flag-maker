@@ -1,6 +1,7 @@
 const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin');
 const SSRPlugin =
   require('next/dist/build/webpack/plugins/nextjs-ssr-import').default;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { dirname, relative, resolve, join } = require('path');
 
 module.exports = {
@@ -43,6 +44,16 @@ module.exports = {
     // Ensure the filename for the .wasm bundle is the same on both the client
     // and the server (as in any other mode the ID's won't match)
     config.optimization.moduleIds = 'named';
+
+    if (process.env.ANALYZE) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          analyzerPort: isServer ? 8888 : 8889,
+          openAnalyzer: true,
+        })
+      );
+    }
 
     return config;
   },

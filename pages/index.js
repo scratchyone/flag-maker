@@ -4,7 +4,6 @@ import { FaTimes } from 'react-icons/fa';
 import { useState, useEffect, useRef } from 'react';
 import { SketchPicker } from 'react-color';
 import ReactDOMServer from 'react-dom/server';
-import Canvg, { presets } from 'canvg';
 import classnames from 'classnames';
 import canvasToBlob from 'async-canvas-to-blob';
 import scrollToComponent from 'react-scroll-to-component';
@@ -117,7 +116,7 @@ export default function Home() {
           <div className={styles.exportButtons}>
             <button
               className={styles.exportButton}
-              onClick={() => downloadPNG(generateFlag(colors, direction))}
+              onClick={() => downloadPNG(colors, direction)}
             >
               Download as PNG
             </button>
@@ -147,14 +146,31 @@ function downloadSVG(svg) {
   var blob = new Blob([xml], { type: 'image/svg+xml' });
   saveAs(blob, 'flag.svg');
 }
-async function downloadPNG(svg) {
-  let xml = ReactDOMServer.renderToStaticMarkup(svg);
+async function downloadPNG(colors, direction) {
   const canvas = document.createElement('canvas');
   canvas.width = 1920;
   canvas.height = 1152;
   const ctx = canvas.getContext('2d');
-  let v = await Canvg.from(ctx, xml, presets.offscreen());
-  await v.render();
+
+  for (const i in colors) {
+    const color = colors[i];
+    ctx.fillStyle = '#' + color;
+    if (direction == directions.horizontal)
+      ctx.fillRect(
+        0,
+        i * (canvas.height / colors.length),
+        canvas.width,
+        canvas.height
+      );
+    else
+      ctx.fillRect(
+        i * (canvas.width / colors.length),
+        0,
+        canvas.width,
+        canvas.height
+      );
+  }
+
   const blob = await canvasToBlob(canvas);
   saveAs(blob, 'flag.png');
 }

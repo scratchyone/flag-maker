@@ -12,7 +12,6 @@
   "dependencies": {
     "@wasm-tool/wasm-pack-plugin": "^1.6.0",
     "async-canvas-to-blob": "^1.0.3",
-    "canvg": "^3.0.9",
     "classnames": "^2.3.1",
     "file-saver": "^2.0.5",
     "flex-gap-polyfill": "^4.1.0",
@@ -20,6 +19,7 @@
     "postcss": "^8.4.5",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^7.1.0",
+    "raf": "^3.4.1",
     "react": "17.0.2",
     "react-color": "^2.19.3",
     "react-dom": "17.0.2",
@@ -27,5 +27,8 @@
     "react-scroll-to-component": "^1.0.2",
     "sharp": "^0.29.3",
     "tween": "^0.9.0"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.5.0"
   }
 }

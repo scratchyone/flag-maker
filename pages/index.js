@@ -90,6 +90,9 @@ export default function Home() {
                 updateColor={(color) => {
                   setColors(Object.assign([], colors, { [i]: color }));
                 }}
+                onChangeComplete={() => {
+                  location.hash = encode(direction, colors);
+                }}
               />
             ))}
           </div>
@@ -194,7 +197,13 @@ function generateFlag(colors, direction, borderRadius) {
     </svg>
   );
 }
-function FlagColorBox({ color, removeColor, updateColor, colors }) {
+function FlagColorBox({
+  color,
+  removeColor,
+  updateColor,
+  colors,
+  onChangeComplete,
+}) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const myRef = useRef(null);
   const executeScroll = () => scrollToComponent(myRef.current);
@@ -233,9 +242,7 @@ function FlagColorBox({ color, removeColor, updateColor, colors }) {
             onChange={({ hex }) => {
               if (pickerOpen) updateColor(hex.replace('#', '').toUpperCase());
             }}
-            onChangeComplete={() => {
-              location.hash = btoa(JSON.stringify(colors));
-            }}
+            onChangeComplete={onChangeComplete}
             className={styles.colorPicker}
             presetColors={Array.from(
               new Set([

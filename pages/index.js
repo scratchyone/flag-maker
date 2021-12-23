@@ -63,7 +63,7 @@ export default function Home() {
           content="Create striped flags easily with Flag Maker"
         />
         <meta
-          property="description"
+          name="description"
           content="Create striped flags easily with Flag Maker"
         />
         <link rel="icon" href="/favicon.ico" />

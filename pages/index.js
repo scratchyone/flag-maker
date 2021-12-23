@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { FaTimes } from 'react-icons/fa';
 import { useState, useEffect, useRef } from 'react';
-import { SketchPicker } from 'react-color';
+import SketchPicker from 'react-color/lib/components/sketch/Sketch';
 import ReactDOMServer from 'react-dom/server';
 import classnames from 'classnames';
 import canvasToBlob from 'async-canvas-to-blob';

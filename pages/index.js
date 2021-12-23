@@ -10,6 +10,9 @@ import canvasToBlob from 'async-canvas-to-blob';
 import scrollToComponent from 'react-scroll-to-component';
 import React from 'react';
 import { saveAs } from 'file-saver';
+import { encode, decode, logging_setup } from '../pkg/wasm_helpers_bg';
+
+logging_setup();
 
 const defaultFlags = [
   ['FF0018', 'FFA52C', 'FFFF41', '008018', '0000F9', '86007D'],
@@ -40,7 +43,13 @@ export default function Home() {
           setColors(json);
         }
       } catch (e) {
-        console.error(e);
+        try {
+          let res = decode(location.hash.substr(1));
+          setDirection(res[0]);
+          setColors(arrayWithoutElementAtIndex(res, 0));
+        } catch (e) {
+          console.error(e);
+        }
       }
     }
   }, []);
@@ -76,7 +85,7 @@ export default function Home() {
                 removeColor={() => {
                   const nc = arrayWithoutElementAtIndex(colors, i);
                   setColors(nc);
-                  location.hash = btoa(JSON.stringify(nc));
+                  location.hash = encode(direction, nc);
                 }}
                 updateColor={(color) => {
                   setColors(Object.assign([], colors, { [i]: color }));
@@ -92,7 +101,7 @@ export default function Home() {
                 defaultFlags.random().random().toUpperCase(),
               ];
               setColors(nc);
-              location.hash = btoa(JSON.stringify([direction, ...nc]));
+              location.hash = encode(direction, nc);
             }}
           >
             Add
@@ -119,7 +128,7 @@ export default function Home() {
           <button
             className={styles.directionButton}
             onClick={() => {
-              location.hash = btoa(JSON.stringify([direction * -1, ...colors]));
+              location.hash = encode(direction * -1, colors);
               setDirection(direction * -1);
             }}
           >

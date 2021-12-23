@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run wasm && next dev",
+    "wasm": "cd wasm-helpers && wasm-pack build && cd ../ && rm -rf pkg && cp -r wasm-helpers/pkg pkg && rm -rf pkg/.gitignore",
+    "build_local": "npm run wasm && next build",
     "build": "next build",
     "start": "next start -p $PORT"
   },

@@ -1,0 +1,13 @@
+{
+  "name": "wasm-helpers",
+  "version": "0.1.0",
+  "files": [
+    "wasm_helpers_bg.wasm",
+    "wasm_helpers.js",
+    "wasm_helpers_bg.js",
+    "wasm_helpers.d.ts"
+  ],
+  "module": "wasm_helpers.js",
+  "types": "wasm_helpers.d.ts",
+  "sideEffects": false
+}

@@ -26,7 +26,7 @@ pub fn encode(direction: i8, stripes: Vec<JsValue>) -> String {
         .map(|s| s.as_string().unwrap())
         .collect::<Vec<_>>();
     let res = encode_internal(direction, stripes);
-    base64::encode(res.into_vec())
+    base64::encode_config(res.into_vec(), base64::URL_SAFE_NO_PAD)
 }
 fn encode_internal(direction: i8, stripes: Vec<String>) -> BitVec<Msb0, u8> {
     let curr_version = bitvec![0, 0, 0];
@@ -58,7 +58,7 @@ struct DecoderOutput {
 }
 #[wasm_bindgen]
 pub fn decode(input: String) -> Array {
-    let vec = base64::decode(&input).unwrap();
+    let vec = base64::decode_config(&input, base64::URL_SAFE_NO_PAD).unwrap();
     let input = BitVec::from_vec(vec);
     let decoded = decode_internal(input);
     let res = Array::new();

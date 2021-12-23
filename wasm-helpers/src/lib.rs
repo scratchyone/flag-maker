@@ -7,14 +7,14 @@ use wasm_bindgen::prelude::*;
 pub fn decode_hex(s: &str) -> Vec<u8> {
     (0..s.len())
         .step_by(2)
-        .map(|i| u8::from_str_radix(&s[i..i + 2], 16).unwrap())
+        .map(|i| u8::from_str_radix(&s[i..i + 2], 16).expect("Invalid hex digit"))
         .collect()
 }
 
 pub fn encode_hex(bytes: &[u8]) -> String {
     let mut s = String::with_capacity(bytes.len() * 2);
     for &b in bytes {
-        write!(&mut s, "{:02X}", b).unwrap();
+        write!(&mut s, "{:02X}", b).expect("Invalid hex digit");
     }
     s
 }
@@ -23,7 +23,7 @@ pub fn encode_hex(bytes: &[u8]) -> String {
 pub fn encode(direction: i8, stripes: Vec<JsValue>) -> String {
     let stripes = stripes
         .into_iter()
-        .map(|s| s.as_string().unwrap())
+        .map(|s| s.as_string().expect("Stripe must be a string"))
         .collect::<Vec<_>>();
     let res = encode_internal(direction, stripes);
     base64::encode_config(res.into_vec(), base64::URL_SAFE_NO_PAD)
@@ -51,6 +51,7 @@ fn encode_internal(direction: i8, stripes: Vec<String>) -> BitVec<Msb0, u8> {
 #[wasm_bindgen]
 pub fn logging_setup() {
     wasm_logger::init(wasm_logger::Config::default());
+    console_error_panic_hook::set_once();
 }
 struct DecoderOutput {
     direction: i8,
@@ -58,7 +59,7 @@ struct DecoderOutput {
 }
 #[wasm_bindgen]
 pub fn decode(input: String) -> Array {
-    let vec = base64::decode_config(&input, base64::URL_SAFE_NO_PAD).unwrap();
+    let vec = base64::decode_config(&input, base64::URL_SAFE_NO_PAD).expect("Invalid base64");
     let input = BitVec::from_vec(vec);
     let decoded = decode_internal(input);
     let res = Array::new();
@@ -69,16 +70,23 @@ pub fn decode(input: String) -> Array {
     res
 }
 fn decode_internal(input: BitVec<Msb0, u8>) -> DecoderOutput {
-    let curr_version: u8 = input.get(0..3).unwrap().load::<u8>();
+    let curr_version: u8 = input
+        .get(0..3)
+        .expect("Invalid current version")
+        .load::<u8>();
     info!("curr_version: {:?}", curr_version);
     match curr_version {
         0 => (),
         _ => panic!("Unsupported version"),
     }
-    let direction = if *input.get(3).unwrap() { 1 } else { -1 };
+    let direction = if *input.get(3).expect("Invalid direction") {
+        1
+    } else {
+        -1
+    };
     info!("direction: {}", direction);
     let mut stripes: Vec<String> = Vec::new();
-    let mut stripe_section = input.get(4..).unwrap().to_bitvec();
+    let mut stripe_section = input.get(4..).expect("Failed to get stripes").to_bitvec();
     stripe_section.force_align();
     let stripes_chunks = stripe_section.chunks_exact(4 * 6);
     for chunk in stripes_chunks {

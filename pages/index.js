@@ -10,7 +10,7 @@ import canvasToBlob from 'async-canvas-to-blob';
 import scrollToComponent from 'react-scroll-to-component';
 import React from 'react';
 import { saveAs } from 'file-saver';
-import { encode, decode, logging_setup } from '../pkg/wasm_helpers_bg';
+import { encode, decode, logging_setup } from '../pkg/wasm_helpers_bg.js';
 
 logging_setup();
 

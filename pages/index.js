@@ -33,8 +33,10 @@ export default function Home() {
     'FFFFFF',
     'FFFFFF',
   ]);
+  const [preload, setPreload] = useState(true);
   const [direction, setDirection] = useState(directions.horizontal);
   useEffect(() => {
+    setPreload(false);
     setColors(defaultFlags.random().map((n) => n.toUpperCase()));
     setDirection(directions.horizontal);
     if (location.hash) {
@@ -86,6 +88,7 @@ export default function Home() {
               <FlagColorBox
                 color={color}
                 colors={colors}
+                preload={preload}
                 key={i}
                 removeColor={() => {
                   const nc = arrayWithoutElementAtIndex(colors, i);
@@ -225,6 +228,7 @@ function FlagColorBox({
   updateColor,
   colors,
   onChangeComplete,
+  preload,
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const myRef = useRef(null);
@@ -289,10 +293,13 @@ function FlagColorBox({
           />
         )}
         <div
-          className={styles.colorHexCode}
+          className={classnames(
+            styles.colorHexCode,
+            preload && styles.preloadColorHexCode
+          )}
           onClick={() => setPickerOpen(true)}
         >
-          #{color}
+          {preload ? '' : '#' + color}
         </div>
         <FaTimes className={styles.removeColor} onClick={removeColor} />
       </div>

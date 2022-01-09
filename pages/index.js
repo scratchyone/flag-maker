@@ -119,9 +119,20 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.rightColumn}>
-          <div className={styles.flag}>
-            {generateFlag(colors, direction, 6)}
-          </div>
+          <ShimmerLoad preload={preload}>
+            {preload ? (
+              <div className={styles.flag} style={{ borderRadius: 6 }}>
+                <svg
+                  viewBox={`0 0 ${500} ${300}`}
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+              </div>
+            ) : (
+              <div className={styles.flag}>
+                {generateFlag(colors, direction, 6)}
+              </div>
+            )}
+          </ShimmerLoad>
           <div className={styles.exportButtons}>
             <button
               className={styles.exportButton}
@@ -245,16 +256,20 @@ function FlagColorBox({
       style={pickerOpen ? { touchAction: 'none' } : {}}
     >
       <div className={styles.flagColorBoxFlex}>
-        <div
-          className={classnames(
-            styles.colorSwatch,
-            color.toUpperCase() == 'FFFFFF' && styles.whiteColorSwatch
-          )}
-          style={{ backgroundColor: '#' + color }}
-          onClick={() => {
-            setPickerOpen(true);
-          }}
-        />
+        <ShimmerLoad preload={preload}>
+          <div
+            className={classnames(
+              styles.colorSwatch,
+              color.toUpperCase() == 'FFFFFF' &&
+                !preload &&
+                styles.whiteColorSwatch
+            )}
+            style={preload ? {} : { backgroundColor: '#' + color }}
+            onClick={() => {
+              setPickerOpen(true);
+            }}
+          />
+        </ShimmerLoad>
         {pickerOpen && (
           <div
             className={styles.outsideClickCatcher}
@@ -292,19 +307,54 @@ function FlagColorBox({
             )}
           />
         )}
-        <div
-          className={classnames(
-            styles.colorHexCode,
-            preload && styles.preloadColorHexCode
-          )}
-          onClick={() => setPickerOpen(true)}
+        <ShimmerLoad
+          preload={preload}
+          style={{
+            width: '7.4ch',
+            height: '1em',
+            borderRadius: '2px',
+          }}
         >
-          {preload ? '' : '#' + color}
-        </div>
-        <FaTimes className={styles.removeColor} onClick={removeColor} />
+          <div
+            className={classnames(styles.colorHexCode)}
+            onClick={() => setPickerOpen(true)}
+          >
+            {preload ? '' : '#' + color}
+          </div>
+        </ShimmerLoad>
+        <ShimmerLoad
+          preload={preload}
+          style={{
+            color: 'transparent',
+            borderRadius: '3px',
+          }}
+        >
+          <FaTimes
+            className={classnames(styles.removeColor)}
+            onClick={removeColor}
+          />
+        </ShimmerLoad>
       </div>
     </div>
   );
+}
+function ShimmerLoad({ preload, children, style }) {
+  if (preload) {
+    const StyledChildren = () =>
+      React.Children.map(children, (child) =>
+        React.cloneElement(child, {
+          className: `${child.props.className || ''} ${styles.shimmer}`,
+          style: {
+            ...(child.props.style || {}),
+            ...style,
+          },
+        })
+      );
+
+    return <StyledChildren />;
+  } else {
+    return children;
+  }
 }
 const arrayWithoutElementAtIndex = function (arr, index) {
   return arr.filter(function (value, arrIndex) {

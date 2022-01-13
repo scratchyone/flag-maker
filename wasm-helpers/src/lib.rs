@@ -1,5 +1,5 @@
 use bitvec::prelude::*;
-use js_sys::Array;
+use js_sys::{Array, JsString};
 use log::{debug, info};
 use std::fmt::Write;
 use wasm_bindgen::prelude::*;
@@ -19,8 +19,9 @@ pub fn encode_hex(bytes: &[u8]) -> String {
     s
 }
 
+/// Encodes the application data into a base64 url hash.
 #[wasm_bindgen]
-pub fn encode(direction: i8, stripes: Vec<JsValue>) -> String {
+pub fn encode(direction: i8, stripes: Vec<JsString>) -> String {
     let stripes = stripes
         .into_iter()
         .map(|s| s.as_string().expect("Stripe must be a string"))
@@ -57,15 +58,17 @@ struct DecoderOutput {
     direction: i8,
     stripes: Vec<String>,
 }
+
+/// Decodes the base64 url hash into the application data.
 #[wasm_bindgen]
-pub fn decode(input: String) -> Array {
+pub fn decode(input: String) -> Vec<JsValue> {
     let vec = base64::decode_config(&input, base64::URL_SAFE_NO_PAD).expect("Invalid base64");
     let input = BitVec::from_vec(vec);
     let decoded = decode_internal(input);
-    let res = Array::new();
-    res.push(&JsValue::from_f64(decoded.direction as f64));
+    let mut res = Vec::new();
+    res.push(JsValue::from_f64(decoded.direction as f64));
     for stripe in decoded.stripes {
-        res.push(&JsValue::from_str(&stripe));
+        res.push(JsValue::from_str(&stripe));
     }
     res
 }

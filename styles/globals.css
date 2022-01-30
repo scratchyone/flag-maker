@@ -15,6 +15,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Open Sans, sans-serif;
   background-color: var(--bg-color);
+}
+* {
+  font-family: 'Open Sans', sans-serif;
 }

@@ -105,7 +105,7 @@ export default function Home() {
             ))}
           </div>
           <button
-            className={styles.addButton}
+            className={classnames(styles.button, styles.addButton)}
             onClick={() => {
               const nc = [
                 ...colors,
@@ -135,20 +135,20 @@ export default function Home() {
           </ShimmerLoad>
           <div className={styles.exportButtons}>
             <button
-              className={styles.exportButton}
+              className={classnames(styles.button, styles.exportButton)}
               onClick={() => downloadPNG(colors, direction)}
             >
               Download as PNG
             </button>
             <button
-              className={styles.exportButton}
+              className={classnames(styles.button, styles.exportButton)}
               onClick={() => downloadSVG(generateFlag(colors, direction))}
             >
               Download as SVG
             </button>
           </div>
           <button
-            className={styles.directionButton}
+            className={classnames(styles.button, styles.directionButton)}
             onClick={() => {
               location.hash = encode(direction * -1, colors);
               setDirection(direction * -1);

@@ -76,19 +76,20 @@
   top: 0;
   left: 0;
 }
-.addButton {
-  border: none;
+.button {
   background: var(--button-color);
   border-radius: var(--button-border-radius);
-
   font-weight: bold;
   font-size: var(--button-font-size);
-  line-height: 48px;
   text-align: center;
   color: var(--text-color);
+  border: none;
   outline: none;
-  padding: 5px;
   cursor: pointer;
+}
+.addButton {
+  line-height: 48px;
+  padding: 5px;
   margin-bottom: 20px;
   min-width: 200px;
 }
@@ -115,34 +116,18 @@
 }
 .exportButton {
   flex-grow: 1;
-  border: none;
-  background: var(--button-color);
-  border-radius: var(--button-border-radius);
-
-  font-weight: bold;
-  font-size: var(--button-font-size);
   line-height: 44px;
-  color: var(--text-color);
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
-  cursor: pointer;
 }
 .directionButton {
   max-width: 90vw;
   width: 100%;
-  border: none;
-  background: var(--button-color);
-  border-radius: var(--button-border-radius);
-
-  font-weight: bold;
-  font-size: var(--button-font-size);
   line-height: 44px;
-  color: var(--text-color);
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
-  cursor: pointer;
   margin-bottom: 10px;
 }
 .preloadColorHexCode {

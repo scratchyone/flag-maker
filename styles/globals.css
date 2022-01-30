@@ -2,6 +2,7 @@
 :root {
   --bg-color: #ffffff;
   --button-color: #6865f2;
+  --button-color-hover: #5653e6;
   --button-border-radius: 12px;
   --button-font-size: 32px;
   --text-color: #ffffff;

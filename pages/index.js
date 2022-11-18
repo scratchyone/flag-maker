@@ -79,6 +79,10 @@ export default function Home() {
           data-domain="flag.rachel.systems"
           src="/js/script.js"
         ></script>
+        <script>
+          window.plausible = window.plausible || function(){' '}
+          {(window.plausible.q = window.plausible.q || []).push(arguments)}
+        </script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>
       <div className={styles.holder}>
@@ -94,12 +98,14 @@ export default function Home() {
                   const nc = arrayWithoutElementAtIndex(colors, i);
                   setColors(nc);
                   location.hash = encode(direction, nc);
+                  plausible('edit', { props: { type: 'remove' } });
                 }}
                 updateColor={(color) => {
                   setColors(Object.assign([], colors, { [i]: color }));
                 }}
                 onChangeComplete={() => {
                   location.hash = encode(direction, colors);
+                  plausible('edit', { props: { type: 'update' } });
                 }}
               />
             ))}
@@ -113,6 +119,7 @@ export default function Home() {
               ];
               setColors(nc);
               location.hash = encode(direction, nc);
+              plausible('edit', { props: { type: 'add' } });
             }}
           >
             Add
@@ -152,6 +159,7 @@ export default function Home() {
             onClick={() => {
               location.hash = encode(direction * -1, colors);
               setDirection(direction * -1);
+              plausible('edit', { props: { type: 'direction' } });
             }}
           >
             Change Stripe Direction
@@ -162,11 +170,13 @@ export default function Home() {
   );
 }
 function downloadSVG(svg) {
+  plausible('download', { props: { type: 'svg' } });
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
   var blob = new Blob([xml], { type: 'image/svg+xml' });
   saveAs(blob, 'flag.svg');
 }
 async function downloadPNG(colors, direction) {
+  plausible('download', { props: { type: 'png' } });
   const canvas = document.createElement('canvas');
   canvas.width = 1920;
   canvas.height = 1152;

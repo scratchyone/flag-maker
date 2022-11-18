@@ -6,10 +6,26 @@
   --button-border-radius: 12px;
   --button-font-size: 32px;
   --text-color: #ffffff;
+  --flag-color-text: #333;
   --header-color: #a74848;
   --flag-color-border: #eeeeee;
   --white-color-border: #bebebe;
   --flag-color-box-background: #fdfdfd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #202226;
+    --button-color: #6865f2;
+    --button-color-hover: #5653e6;
+    --button-border-radius: 12px;
+    --button-font-size: 32px;
+    --text-color: #ffffff;
+    --header-color: #ff6767;
+    --flag-color-border: rgba(0, 0, 0, 0);
+    --flag-color-text: #ffffff;
+    --white-color-border: #bebebe;
+    --flag-color-box-background: #303236;
+  }
 }
 html,
 body {

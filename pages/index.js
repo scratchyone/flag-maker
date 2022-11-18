@@ -80,8 +80,7 @@ export default function Home() {
           src="/js/script.js"
         ></script>
         <script>
-          window.plausible = window.plausible || function(){' '}
-          {(window.plausible.q = window.plausible.q || []).push(arguments)}
+          {`if(typeof window !== 'undefined') window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) })`}
         </script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>

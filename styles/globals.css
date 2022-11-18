@@ -12,6 +12,7 @@
   --white-color-border: #bebebe;
   --flag-color-box-background: #fdfdfd;
 }
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #202226;
@@ -26,7 +27,7 @@
     --white-color-border: #bebebe;
     --flag-color-box-background: #303236;
   }
-}
+}*/
 html,
 body {
   padding: 0;

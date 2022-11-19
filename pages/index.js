@@ -175,7 +175,7 @@ function logDownload(colors) {
     typeof window !== 'undefined' &&
     location.hostname === 'flag.rachel.systems'
   ) {
-    fetch('https://flag-dataset.scratchyone.workers.dev', {
+    fetch('https://flag-dataset.scratchyone.workers.dev/flags', {
       method: 'POST',
       body: JSON.stringify(colors),
     }).then(() => {});

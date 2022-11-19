@@ -170,15 +170,19 @@ export default function Home() {
     </div>
   );
 }
+// Avoid double logging
+const lastColorSet = [];
 function logDownload(colors) {
   if (
     typeof window !== 'undefined' &&
-    location.hostname === 'flag.rachel.systems'
+    location.hostname === 'flag.rachel.systems' &&
+    lastColorSet !== colors
   ) {
     fetch('https://flag-dataset.scratchyone.workers.dev/flags', {
       method: 'POST',
       body: JSON.stringify(colors),
     }).then(() => {});
+    lastColorSet = colors;
   }
 }
 function downloadSVG(svg, colors) {

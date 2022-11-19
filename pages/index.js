@@ -80,7 +80,7 @@ export default function Home() {
           src="/js/script.js"
         ></script>
         <script>
-          {`if(typeof window !== 'undefined') window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) })`}
+          {`if(typeof window !== 'undefined') window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
         </script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>
@@ -148,7 +148,9 @@ export default function Home() {
             </button>
             <button
               className={classnames(styles.button, styles.exportButton)}
-              onClick={() => downloadSVG(generateFlag(colors, direction))}
+              onClick={() =>
+                downloadSVG(generateFlag(colors, direction), colors)
+              }
             >
               Download as SVG
             </button>
@@ -168,13 +170,26 @@ export default function Home() {
     </div>
   );
 }
-function downloadSVG(svg) {
+function logDownload(colors) {
+  if (
+    typeof window !== 'undefined' &&
+    location.hostname === 'flag.rachel.systems'
+  ) {
+    fetch('https://flag-dataset.scratchyone.workers.dev', {
+      method: 'POST',
+      body: JSON.stringify(colors),
+    }).then(() => {});
+  }
+}
+function downloadSVG(svg, colors) {
+  logDownload(colors);
   plausible('download', { props: { type: 'svg' } });
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
   var blob = new Blob([xml], { type: 'image/svg+xml' });
   saveAs(blob, 'flag.svg');
 }
 async function downloadPNG(colors, direction) {
+  logDownload(colors);
   plausible('download', { props: { type: 'png' } });
   const canvas = document.createElement('canvas');
   canvas.width = 1920;

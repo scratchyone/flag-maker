@@ -1,16 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;600;700&display=swap');
 :root {
-  --bg-color: #ffffff;
-  --button-color: #6865f2;
-  --button-color-hover: #5653e6;
-  --button-border-radius: 12px;
-  --button-font-size: 32px;
+  --bg-color: linear-gradient(
+      0deg,
+      rgba(113, 77, 159, 0.08),
+      rgba(113, 77, 159, 0.08)
+    ),
+    #fffbff;
+  --button-color: #714d9f;
+  --button-color-hover: #714d9f;
+  --button-border-radius: 16px;
+  --button-font-size: 28px;
   --text-color: #ffffff;
-  --flag-color-text: #333;
-  --header-color: #a74848;
-  --flag-color-border: #eeeeee;
-  --white-color-border: #bebebe;
-  --flag-color-box-background: #fdfdfd;
+  --flag-color-text: #2a0054;
+  --header-color: #1d1b1e;
+  --flag-color-border: rgba(0, 0, 0, 0);
+  --white-color-border: rgba(0, 0, 0, 0);
+  --flag-color-box-background: #eedcff;
 }
 /*
 @media (prefers-color-scheme: dark) {
@@ -32,8 +37,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--bg-color);
+  background: var(--bg-color);
 }
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }

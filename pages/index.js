@@ -127,7 +127,7 @@ export default function Home() {
         <div className={styles.rightColumn}>
           <ShimmerLoad preload={preload}>
             {preload ? (
-              <div className={styles.flag} style={{ borderRadius: 6 }}>
+              <div className={styles.flag} style={{ borderRadius: 16 }}>
                 <svg
                   viewBox={`0 0 ${500} ${300}`}
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ export default function Home() {
               </div>
             ) : (
               <div className={styles.flag}>
-                {generateFlag(colors, direction, 6)}
+                {generateFlag(colors, direction, 16)}
               </div>
             )}
           </ShimmerLoad>
@@ -171,7 +171,7 @@ export default function Home() {
   );
 }
 // Avoid double logging
-const lastColorSet = [];
+const lastColorSet = undefined;
 function logDownload(colors) {
   if (
     typeof window !== 'undefined' &&

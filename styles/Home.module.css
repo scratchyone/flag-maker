@@ -1,9 +1,9 @@
 .header {
   text-align: center;
 
-  font-weight: bold;
+  font-weight: 700;
   font-size: 64px;
-  line-height: 87px;
+  line-height: 57px;
   color: var(--header-color);
   padding-bottom: 20px;
 }
@@ -29,7 +29,7 @@
   background: var(--flag-color-box-background);
   border: 2px solid var(--flag-color-border);
   box-sizing: border-box;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 15px;
 }
 .flagColorBoxFlex {
@@ -51,7 +51,7 @@
 }
 .colorHexCode {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 28px;
   line-height: 38px;
   color: var(--flag-color-text);
@@ -61,7 +61,7 @@
 .removeColor {
   font-size: 28px;
   line-height: 32px;
-  color: #cb3d3d;
+  color: #714d9f;
   cursor: pointer;
 }
 .colorPicker {
@@ -79,7 +79,7 @@
 .button {
   background: var(--button-color);
   border-radius: var(--button-border-radius);
-  font-weight: bold;
+  font-weight: 500;
   font-size: var(--button-font-size);
   text-align: center;
   color: var(--text-color);
@@ -100,7 +100,6 @@
 }
 .flag > svg {
   max-width: 90vw;
-  filter: drop-shadow(2px 2px 29px rgba(0, 0, 0, 0.1));
 }
 .exportButtons {
   display: grid;

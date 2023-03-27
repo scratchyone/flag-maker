@@ -341,6 +341,7 @@ function FlagColorBox({
             width: '7.4ch',
             height: '1em',
             borderRadius: '2px',
+            color: 'transparent',
           }}
         >
           <div

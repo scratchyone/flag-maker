@@ -10,6 +10,7 @@
     "start": "next start -p $PORT"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.11",
     "@wasm-tool/wasm-pack-plugin": "^1.6.0",
     "async-canvas-to-blob": "^1.0.3",
     "classnames": "^2.3.1",

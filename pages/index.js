@@ -78,13 +78,13 @@ export default function Home() {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-3TJ98MEM74"
         ></script>
-        <script>
-          {`window.dataLayer = window.dataLayer || [];
+        <script
+          dangerouslySetInnerHTML={`window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-3TJ98MEM74');`}
-        </script>
+        ></script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>
       <div className={styles.holder}>

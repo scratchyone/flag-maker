@@ -79,11 +79,13 @@ export default function Home() {
           src="https://www.googletagmanager.com/gtag/js?id=G-3TJ98MEM74"
         ></script>
         <script
-          dangerouslySetInnerHTML={`window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-3TJ98MEM74');`}
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'G-3TJ98MEM74');`,
+          }}
         ></script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>

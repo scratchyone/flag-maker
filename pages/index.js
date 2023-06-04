@@ -75,12 +75,15 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
         <script
-          defer
-          data-domain="flag.rachel.systems"
-          src="/js/script.js"
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-3TJ98MEM74"
         ></script>
         <script>
-          {`if(typeof window !== 'undefined') window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-3TJ98MEM74');`}
         </script>
       </Head>
       <h1 className={styles.header}>Flag Maker</h1>

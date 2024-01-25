@@ -1,6 +1,4 @@
 const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin');
-const SSRPlugin =
-  require('next/dist/build/webpack/plugins/nextjs-ssr-import').default;
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { dirname, relative, resolve, join } = require('path');
 

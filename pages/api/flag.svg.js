@@ -2,6 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 export default function handler(req, res) {
   if (!req.query.colors) res.status(400).send(errorPageMissingParam());
+  return;
   res
     .status(200)
     // Set content type

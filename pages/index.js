@@ -176,7 +176,7 @@ export default function Home() {
   );
 }
 // Avoid double logging
-const lastColorSet = undefined;
+let lastColorSet = undefined;
 function logDownload(colors) {
   if (
     typeof window !== 'undefined' &&

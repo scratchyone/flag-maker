@@ -102,14 +102,14 @@ export default function Home() {
                   const nc = arrayWithoutElementAtIndex(colors, i);
                   setColors(nc);
                   location.hash = encode(direction, nc);
-                  plausible('edit', { props: { type: 'remove' } });
+                  // plausible('edit', { props: { type: 'remove' } });
                 }}
                 updateColor={(color) => {
                   setColors(Object.assign([], colors, { [i]: color }));
                 }}
                 onChangeComplete={() => {
                   location.hash = encode(direction, colors);
-                  plausible('edit', { props: { type: 'update' } });
+                  // plausible('edit', { props: { type: 'update' } });
                 }}
               />
             ))}
@@ -123,7 +123,7 @@ export default function Home() {
               ];
               setColors(nc);
               location.hash = encode(direction, nc);
-              plausible('edit', { props: { type: 'add' } });
+              // plausible('edit', { props: { type: 'add' } });
             }}
           >
             Add
@@ -165,7 +165,7 @@ export default function Home() {
             onClick={() => {
               location.hash = encode(direction * -1, colors);
               setDirection(direction * -1);
-              plausible('edit', { props: { type: 'direction' } });
+              // plausible('edit', { props: { type: 'direction' } });
             }}
           >
             Change Stripe Direction
@@ -192,14 +192,14 @@ function logDownload(colors) {
 }
 function downloadSVG(svg, colors) {
   logDownload(colors);
-  plausible('download', { props: { type: 'svg' } });
+  // plausible('download', { props: { type: 'svg' } });
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
   var blob = new Blob([xml], { type: 'image/svg+xml' });
   saveAs(blob, 'flag.svg');
 }
 async function downloadPNG(colors, direction) {
   logDownload(colors);
-  plausible('download', { props: { type: 'png' } });
+  // plausible('download', { props: { type: 'png' } });
   const canvas = document.createElement('canvas');
   canvas.width = 1920;
   canvas.height = 1152;

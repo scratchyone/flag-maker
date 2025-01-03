@@ -1,8 +1,9 @@
 const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { dirname, relative, resolve, join } = require('path');
+const { withPlausibleProxy } = require('next-plausible');
 
-module.exports = {
+module.exports = withPlausibleProxy()({
   async headers() {
     return [
       {
@@ -55,4 +56,4 @@ module.exports = {
 
     return config;
   },
-};
+});

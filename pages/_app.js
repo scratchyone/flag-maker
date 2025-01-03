@@ -1,11 +1,12 @@
 import '../styles/globals.css';
-import { Analytics } from '@vercel/analytics/react';
 
+import PlausibleProvider from 'next-plausible';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
-      <Analytics />
+      <PlausibleProvider domain="flag.rachel.systems">
+        <Component {...pageProps} />
+      </PlausibleProvider>
     </>
   );
 }

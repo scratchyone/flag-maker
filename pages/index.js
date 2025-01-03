@@ -10,7 +10,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import React from 'react';
 import { saveAs } from 'file-saver';
 import { encode, decode, logging_setup } from '../pkg/wasm_helpers_bg.js';
-
+import { usePlausible } from 'next-plausible';
 logging_setup();
 
 const defaultFlags = [
@@ -35,6 +35,8 @@ export default function Home() {
   ]);
   const [preload, setPreload] = useState(true);
   const [direction, setDirection] = useState(directions.horizontal);
+  const plausible = usePlausible();
+
   useEffect(() => {
     setPreload(false);
     setColors(defaultFlags.random().map((n) => n.toUpperCase()));
@@ -147,15 +149,19 @@ export default function Home() {
           <div className={styles.exportButtons}>
             <button
               className={classnames(styles.button, styles.exportButton)}
-              onClick={() => downloadPNG(colors, direction)}
+              onClick={() => {
+                downloadPNG(colors, direction);
+                plausible('download', { props: { type: 'png' } });
+              }}
             >
               Download as PNG
             </button>
             <button
               className={classnames(styles.button, styles.exportButton)}
-              onClick={() =>
-                downloadSVG(generateFlag(colors, direction), colors)
-              }
+              onClick={() => {
+                downloadSVG(generateFlag(colors, direction), colors);
+                plausible('download', { props: { type: 'svg' } });
+              }}
             >
               Download as SVG
             </button>

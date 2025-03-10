@@ -73,7 +73,7 @@ export default function Home() {
         />
         <meta
           name="description"
-          content="Flag Maker lets you easily create striped flags and export them as PNG and SVG."
+          content="Create custom flags with Flag Maker! Design your very own unique flags with Flag Maker's variety of colors, stripes, and orientations. Completely free to use, share your unique designs, and download them as PNG or SVG!"
         />
         <link rel="icon" href="/favicon.ico" />
         <script
